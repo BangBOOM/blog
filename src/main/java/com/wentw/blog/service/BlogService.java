@@ -14,6 +14,8 @@ public interface BlogService {
 
     Blog getBlog(Long id);
 
+    Blog getAndConvert(Long id);
+
     Page<Blog> listBlog(Pageable pageable, BlogQuery blog);
 
     Page<Blog> listBlog(Pageable pageable);
@@ -21,7 +23,6 @@ public interface BlogService {
     Page<Blog> listBlog(String query,Pageable pageable);
 
     List<Blog> listRecommendBlogTop(Integer size);
-
 
     Blog saveBlog(Blog blog);
 

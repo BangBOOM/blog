@@ -3,6 +3,7 @@ package com.wentw.blog.service;
 import com.wentw.blog.NotFoundException;
 import com.wentw.blog.dao.BlogRepository;
 import com.wentw.blog.po.Blog;
+import com.wentw.blog.util.MarkdownUtils;
 import com.wentw.blog.util.MyBeanUtils;
 import com.wentw.blog.vo.BlogQuery;
 import org.springframework.beans.BeanUtils;
@@ -37,6 +38,19 @@ public class BlogServiceImpl implements BlogService {
         return blogRepository.getOne(id);
     }
 
+    @Override
+    public Blog getAndConvert(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        Blog b = new Blog();
+        BeanUtils.copyProperties(blog, b);
+        String content = b.getContent();
+        b.setContent(MarkdownUtils.markdownToHtmlExtensions(content));
+        return b;
+    }
+
 
     @Override
     public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
@@ -65,8 +79,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public Page<Blog> listBlog( String query,Pageable pageable) {
-        return blogRepository.findByQuery(query,pageable);
+    public Page<Blog> listBlog(String query, Pageable pageable) {
+        return blogRepository.findByQuery(query, pageable);
     }
 
     @Override
