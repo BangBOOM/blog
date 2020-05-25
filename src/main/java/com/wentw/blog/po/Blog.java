@@ -48,6 +48,15 @@ public class Blog {
     @Transient
     private String tagIds;
 
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
     public void init() {
         this.tagIds = tagsToIds(this.getTags());

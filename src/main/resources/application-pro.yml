@@ -6,7 +6,7 @@ spring:
     password: gerenyinsi1A.
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto:
     show-sql: true
 
 
