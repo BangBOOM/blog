@@ -1,5 +1,7 @@
 body {
     background: url("../images/spikes.png");
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .m-padded-mini {
@@ -117,11 +119,13 @@ body {
 .m-container {
     max-width: 78em !important;
     margin: auto !important;
+    flex: 1 !important;
 }
 
 .m-container-small {
     max-width: 60em !important;
     margin: auto !important;
+    flex: 1 !important;
 }
 
 

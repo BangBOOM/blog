@@ -1,7 +1,7 @@
 package com.wentw.blog.web.admin;
 
-import com.wentw.blog.po.Type;
-import com.wentw.blog.service.TypeService;
+import com.wentw.blog.po.Tag;
+import com.wentw.blog.service.TagService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -14,62 +14,65 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-
 /**
- * Created by Wenquan Yang on 2020/5/24.
+ * Created by Wenquan Yang on 2020/5/25.
  */
 @Controller
 @RequestMapping("/admin")
-public class TypeController {
+public class TagController {
 
     @Autowired
-    private TypeService typeService;
+    private TagService tagService;
 
-    @GetMapping("/types")
-    public String types(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC) Pageable pageable, Model model) {
-        model.addAttribute("page", typeService.listType(pageable));
-        return "admin/types";
+    @GetMapping("/tags")
+    public String tags(@PageableDefault(size = 10, sort = {"id"}, direction = Sort.Direction.DESC)
+                               Pageable pageable, Model model) {
+        model.addAttribute("page", tagService.listTag(pageable));
+        return "admin/tags";
     }
 
-    @GetMapping("/types/input")
+    @GetMapping("/tags/input")
     public String input(Model model) {
-        model.addAttribute("type", new Type());
-        return "admin/type-input";
+        model.addAttribute("tag", new Tag());
+        return "admin/tags-input";
     }
 
-    @GetMapping("/types/{id}/input")
+    @GetMapping("/tags/{id}/input")
     public String editInput(@PathVariable Long id, Model model) {
-        model.addAttribute("type", typeService.getType(id));
-        return "admin/type-input";
+        model.addAttribute("tag", tagService.getTag(id));
+        return "admin/tags-input";
     }
 
 
-    @PostMapping("/types")
-    public String post(Type type, RedirectAttributes attributes) {
-        Type type1 = typeService.saveType(type);
-        if (type1 == null) {
+    @PostMapping("/tags")
+    public String post(Tag tag, RedirectAttributes attributes) {
+        Tag t = tagService.saveTag(tag);
+        if (t == null) {
             attributes.addFlashAttribute("message", "新增失败");
         } else {
             attributes.addFlashAttribute("message", "新增成功");
         }
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
-    @PostMapping("/types/{id}")
-    public String editPost(Type type, @PathVariable Long id, RedirectAttributes attributes) {
-        Type type1 = typeService.updateType(id, type);
-        if (type1 == null) {
+
+    @PostMapping("/tags/{id}")
+    public String editPost(Tag tag, @PathVariable Long id, RedirectAttributes attributes) {
+        Tag t = tagService.updateTag(id, tag);
+        if (t == null) {
             attributes.addFlashAttribute("message", "更新失败");
         } else {
             attributes.addFlashAttribute("message", "更新成功");
         }
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
 
-    @GetMapping("/types/{id}/delete")
+    @GetMapping("/tags/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes) {
-        typeService.deleteType(id);
+        tagService.deleteTag(id);
         attributes.addFlashAttribute("message", "删除成功");
-        return "redirect:/admin/types";
+        return "redirect:/admin/tags";
     }
+
+
 }

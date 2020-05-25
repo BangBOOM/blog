@@ -8,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import javax.transaction.Transactional;
+import java.util.List;
 
 /**
  * Created by Wenquan Yang on 2020/5/24.
@@ -38,6 +39,11 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.findAll(pageable);
     }
 
+    @Override
+    public List<Type> listType() {
+        return typeRepository.findAll();
+    }
+
     @Transactional
     @Override
     public Type updateType(Long id, Type type) {
@@ -50,6 +56,7 @@ public class TypeServiceImpl implements TypeService {
         return typeRepository.save(t);
 
     }
+
 
     @Transactional
     @Override
