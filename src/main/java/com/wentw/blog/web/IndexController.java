@@ -38,7 +38,6 @@ public class IndexController {
         model.addAttribute("tags", tagService.listTagTop(10));
         model.addAttribute("recommendBlogs", blogService.listRecommendBlogTop(8));
         return "index";
-
     }
 
     @PostMapping("/search")
@@ -54,6 +53,7 @@ public class IndexController {
     @GetMapping("/blog/{id}")
     public String blog(@PathVariable Long id, Model model) {
         model.addAttribute("blog", blogService.getAndConvert(id));
+        blogService.updateViews(id);
         return "blog";
     }
 

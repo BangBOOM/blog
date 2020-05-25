@@ -15,29 +15,26 @@
         <div class="ui stackable grid">
             <!--左边博客列表-->
             <div class="eleven wide column">
-                <!--header-->
+                <!--文章数目-->
                 <div class="ui top attached segment">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
                             <h3 class="ui teal header">博客</h3>
                         </div>
                         <div class="right aligned column">
-                            共<h2 class="ui orange header m-inline-blok m-text-thin" th:text="${page.totalElements}">
+                            共<h2 class="ui orange header m-inline-block m-text-thin" th:text="${page.totalElements}">
                             14 </h2>篇
                         </div>
                     </div>
                 </div>
-
-                <!--content--->
+                <!--文章列表--->
                 <div class="ui attached segment">
                     <div class="ui m-padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
                         <div class="ui middle aligned mobile reversed stackable grid">
                             <div class="eleven wide column">
                                 <h3 class="ui header"><a href="#" class="m-black" th:href="@{/blog/{id}(id=${blog.id})}"
-                                                         th:text="${blog.title}">你真的理解什么是财富自由吗</a></h3>
-                                <p class="m-text" th:text="|${blog.description}......|">
-                                    这是我都个人博客、会分现象关于编程、协作、思考相关的内容,这是我都个人博客
-                                </p>
+                                                         th:text="${blog.title}"></a></h3>
+                                <p class="m-text" th:text="|${blog.description}......|"></p>
                                 <div class="ui stackable grid">
                                     <div class="eleven wide column">
                                         <div class="ui mini horizontal link list">
@@ -46,23 +43,21 @@
                                                      th:src="@{${blog.user.avatar}}" alt=""
                                                      class="ui avatar image">
                                                 <div class="content">
-                                                    <a href="#" class="header" th:text="${blog.user.nickname}">杨文权</a>
+                                                    <a href="#" class="header" th:text="${blog.user.nickname}"></a>
                                                 </div>
                                             </div>
                                             <div class="item">
                                                 <i class="calendar icon"></i>
-                                                <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">
-                                                    2020-05-23
-                                                </span>
+                                                <span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}"></span>
                                             </div>
                                             <div class="item">
-                                                <i class="eye icon"></i> <span th:text="${blog.views}">100</span>
+                                                <i class="eye icon"></i> <span th:text="${blog.views}"></span>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="right aligned five wide column">
                                         <a href="#" target="_blank" th:text="${blog.type.name}"
-                                           class="ui teal basic label m-padded-tiny m-text-thin">认知升级</a>
+                                           class="ui teal basic label m-padded-tiny m-text-thin"></a>
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +70,7 @@
                         </div>
                     </div>
                 </div>
-                <!--footer-->
+                <!--翻页-->
                 <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
                     <div class="ui middle aligned two column grid">
                         <div class="column">
@@ -114,9 +109,7 @@
                         <div class="ui fluid vertical menu">
                             <a href="#" class="item" th:each="type: ${types}">
                                 <span th:text="${type.name}"></span>
-                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}">
-                                    12
-                                </div>
+                                <div class="ui teal basic left pointing label" th:text="${#arrays.length(type.blogs)}"></div>
                             </a>
                         </div>
                     </div>
@@ -137,7 +130,7 @@
                         <a href="#" target="_blank" th:each="tag: ${tags}"
                            class="ui teal basic left pointing label m-margin-tb-tiny">
                             <span th:text="${tag.name}"></span>
-                            <div class="detail" th:text="${#arrays.length(tag.blogs)}">23</div>
+                            <div class="detail" th:text="${#arrays.length(tag.blogs)}"></div>
                         </a>
                     </div>
                 </div>
@@ -148,16 +141,16 @@
                     </div>
                     <div class="ui segment" th:each="blog : ${recommendBlogs}">
                         <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank" class="m-black"
-                           th:text="${blog.title}">用户故事（User Story）</a>
+                           th:text="${blog.title}"></a>
                     </div>
 
                 </div>
-                <!--二维码-->
-                <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>
-                <div class="ui centered card" style="width: 12em; padding: 4px">
-                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt=""
-                         class="ui rounded image">
-                </div>
+                <!--放置链接账号-->
+<!--                <h4 class="ui horizontal divider header m-margin-top-large">扫码关注我</h4>-->
+<!--                <div class="ui centered card" style="width: 12em; padding: 4px">-->
+<!--                    <img src="../static/images/wechat.jpg" th:src="@{/images/wechat.jpg}" alt=""-->
+<!--                         class="ui rounded image">-->
+<!--                </div>-->
             </div>
         </div>
     </div>

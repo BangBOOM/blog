@@ -51,6 +51,15 @@ public class BlogServiceImpl implements BlogService {
         return b;
     }
 
+    @Override
+    public void updateViews(Long id) {
+        Blog blog = blogRepository.getOne(id);
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        blog.setViews(blog.getViews() + 1);
+        updateBlog(id, blog);
+    }
 
     @Override
     public Page<Blog> listBlog(Pageable pageable, BlogQuery blog) {
@@ -113,6 +122,7 @@ public class BlogServiceImpl implements BlogService {
         b.setUpdateTime(new Date());
         return blogRepository.save(b);
     }
+
 
     @Transactional
     @Override

@@ -30,4 +30,6 @@ public interface BlogService {
 
     void deleteBlog(Long id);
 
+    void updateViews(Long id);
+
 }

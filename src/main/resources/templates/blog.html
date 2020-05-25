@@ -11,13 +11,15 @@
 <!--中间内容-->
 <div class="m-container m-padded-tb-big">
     <div class="ui container">
+
+        <!--基本信息条 作者，更新日期，浏览量-->
         <div class="ui top attached segment">
             <div class="ui horizontal link list">
                 <div class="item">
                     <img src="https://picsum.photos/id/10/100/100" alt="" th:src="@{${blog.user.avatar}}"
                          class="ui avatar image">
                     <div class="content">
-                        <a href="#" class="header" th:text="${blog.user.nickname}">杨文权</a>
+                        <a href="#" class="header" th:text="${blog.user.nickname}"></a>
                     </div>
                 </div>
                 <div class="item">
@@ -28,156 +30,86 @@
                 </div>
             </div>
         </div>
+
+        <!--图片区域-->
         <div class="ui attached segment">
-            <!--图片区域-->
             <img src="https://picsum.photos/id/10/800/450" th:href="@{${blog.firstPicture}}" alt=""
                  class="ui fluid rounded image">
         </div>
-        <div class="ui padded attached segment">
-            <!--内容-->
-            <div class="ui right aligned basic segment ">
-                <div class="ui orange basic label" th:text="${blog.flag}">原创</div>
-            </div>
-            <h2 class="ui center aligned header" th:text="${blog.title}">排列问题</h2>
-            <br>
 
+        <!--文章内容主题-->
+        <div class="ui padded attached segment">
+            <!--标题-->
+            <div class="ui right aligned basic segment ">
+                <div class="ui orange basic label" th:text="${blog.flag}"></div>
+            </div>
+            <h2 class="ui center aligned header" th:text="${blog.title}"></h2><br>
             <!--文章具体内容-->
             <div id="content" class="typo typo-selection js-toc-content m-padded-lr-responsive m-padded-tb-large"
                  th:utext="${blog.content}"></div>
-
             <!--标签-->
             <div class="m-padded-lr-responsive">
-                <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论
+                <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">
                 </div>
             </div>
         </div>
+
+        <!--署名信息-->
         <div class="ui attached positive message">
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ul class="list">
-                        <li>作者：<span th:text="${blog.user.nickname}">YWQ</span></li>
-                        <li>发表时间：<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}">2020-05-23</span>
+                        <li>作者：<span th:text="${blog.user.nickname}"></span></li>
+                        <li>发表时间：<span th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd HH:mm')}"></span>
                         </li>
                         <li>版权声明：自由转载-非商用-非衍生-保持署名（创意共享3.0许可证）</li>
-                        <!--                        <li>公众号转载：请再文末添加作者公众号二维码</li>-->
+
                     </ul>
                 </div>
-                <!--                <div class="five wide column">-->
-                <!--                    <img src="../static/images/wechat.jpg" alt="" class="ui right floated rounder bordered image"-->
-                <!--                         style="width: 110px">-->
-                <!--                </div>-->
             </div>
         </div>
-        <div id="comment-container" class="ui bottom attached segment">
-            <!--            留言区域列表-->
-            <div class="ui teal segment">
-                <div class="ui threaded comments">
-                    <h3 class="ui dividing header">Comments</h3>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/10/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Matt</a>
-                            <div class="metadata">
-                                <span class="date">Today at 5:42PM</span>
-                            </div>
-                            <div class="text">
-                                How artistic!
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/10/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Elliot Fu</a>
-                            <div class="metadata">
-                                <span class="date">Yesterday at 12:30AM</span>
-                            </div>
-                            <div class="text">
-                                <p>This has been very useful for my research. Thanks as well!</p>
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
-                        </div>
-                        <div class="comments">
-                            <div class="comment">
-                                <a class="avatar">
-                                    <img src="https://picsum.photos/id/10/100/100">
-                                </a>
-                                <div class="content">
-                                    <a class="author">Jenny Hess</a>
-                                    <div class="metadata">
-                                        <span class="date">Just now</span>
-                                    </div>
-                                    <div class="text">
-                                        Elliot you are always so right :)
-                                    </div>
-                                    <div class="actions">
-                                        <a class="reply">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comment">
-                        <a class="avatar">
-                            <img src="https://picsum.photos/id/10/100/100">
-                        </a>
-                        <div class="content">
-                            <a class="author">Joe Henderson</a>
-                            <div class="metadata">
-                                <span class="date">5 days ago</span>
-                            </div>
-                            <div class="text">
-                                Dude, this is awesome. Thanks so much
-                            </div>
-                            <div class="actions">
-                                <a class="reply">Reply</a>
-                            </div>
+
+        <!--留言部分尚未完成-->
+        <div class="ui bottom attached segment">
+            <!--留言展示列表-->
+            <div id="comment-container" class="ui teal segment">
+                <div th:fragment="commentList">
+                    <div class="ui threaded comments" style="max-width: 100% !important;">
+                        <h3 class="ui dividing header">Comments</h3>
+                        <div class="comment">
+                            <p>等待集成第三方</p>
                         </div>
                     </div>
                 </div>
             </div>
-            <!--            提交留言区域-->
-            <div class="form">
-                <form class="ui reply form">
-                    <div class="field">
-                        <textarea name="content" placeholder="请输入评论信息"></textarea>
-                    </div>
-                    <div class="fields">
-                        <div class="field m-mobile-wide m-mobile-margin-bottom">
-                            <div class="ui left icon input">
-                                <i class="user icon"></i>
-                                <input type="text" name="nickname" placeholder="nickname">
-                            </div>
-                        </div>
-                        <div class="field m-mobile-wide m-mobile-margin-bottom">
-                            <div class="ui left icon input">
-                                <i class="mail icon"></i>
-                                <input type="text" name="email" placeholder="e-mail">
-                            </div>
-
+            <!--提交留言区域-->
+            <div id="comment-form" class="ui form">
+                <div class="field">
+                    <textarea name="content" placeholder="请输入评论信息"></textarea>
+                </div>
+                <div class="fields">
+                    <div class="field m-mobile-wide m-mobile-margin-bottom">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="nickname" placeholder="nickname">
                         </div>
                     </div>
-                    <div class="ui blue labeled submit icon button">
-                        <i class="icon edit"></i> Add Reply
+                    <div class="field m-mobile-wide m-mobile-margin-bottom">
+                        <div class="ui left icon input">
+                            <i class="mail icon"></i>
+                            <input type="text" name="email" placeholder="e-mail">
+                        </div>
                     </div>
-                </form>
+                </div>
+                <div class="ui blue labeled submit icon button" id="commentpost-btn">
+                    <i class="icon edit"></i> Add Reply
+                </div>
             </div>
-
         </div>
     </div>
-
 </div>
 
-
+<!--侧边辅助工具-->
 <div class="m-fixed m-right-bottom m-padded-tiny">
     <div class="ui vertical icon buttons">
         <button type="button" class="ui toc teal button">目录</button>
@@ -185,15 +117,12 @@
         <div id="toTop-button" class="ui icon button"><i class="chevron up icon"></i></div>
     </div>
 </div>
-
 <div class="ui toc-container flowing popup transition hidden" style="width: 250px">
     目录
     <ol class="js-toc"></ol>
 </div>
-
 <!--底部-->
 <footer th:replace="_fragments :: footer"></footer>
-
 <!--script-->
 <th:block th:replace="_fragments :: script"></th:block>
 
@@ -222,6 +151,35 @@
     $('#toTop-button').click(function () {
         $(window).scrollTo(0, 500);
     });
+
+    //评论表单验证
+    $('.ui.form').form({
+        fields: {
+            title: {
+                identifier: 'content',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入评论内容'
+                }
+                ]
+            },
+            content: {
+                identifier: 'nickname',
+                rules: [{
+                    type: 'empty',
+                    prompt: '请输入你的大名'
+                }]
+            },
+            type: {
+                identifier: 'email',
+                rules: [{
+                    type: 'email',
+                    prompt: '请填写正确的邮箱地址'
+                }]
+            }
+        }
+    });
+
 
 </script>
 </body>
