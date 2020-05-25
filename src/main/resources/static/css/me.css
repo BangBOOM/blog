@@ -1,5 +1,6 @@
 body {
-    background: url("../images/spikes.png");
+    background: url("https://figure-bed-y.oss-cn-beijing.aliyuncs.com/img/wallhaven-oxv6gl.png");
+    background-attachment: fixed;
     display: flex !important;
     flex-direction: column !important;
 }
@@ -64,14 +65,19 @@ body {
 /*-------text--------*/
 
 .m-text {
-    font-weight: 300 !important;
+
+    font-size: 16px;
+    font-weight: 400 !important;
     letter-spacing: 1px !important;
-    line-height: 1.8;
+    line-height: 1.6;
 
 }
 
 .m-text-thin {
-    font-weight: 300 !important;
+    font-size: 16px;
+    font-weight: 400 !important;
+    letter-spacing: 1px !important;
+    line-height: 1.6;
 }
 
 .m-text-spaced {

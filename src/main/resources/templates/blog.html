@@ -13,7 +13,7 @@
     <div class="ui container">
 
         <!--基本信息条 作者，更新日期，浏览量-->
-        <div class="ui top attached segment">
+        <div class="ui top attached segment disabled" style="color: rgba(0,0,0,1)">
             <div class="ui horizontal link list">
                 <div class="item">
                     <img src="https://picsum.photos/id/10/100/100" alt="" th:src="@{${blog.user.avatar}}"
@@ -32,14 +32,16 @@
         </div>
 
         <!--图片区域-->
-        <div class="ui attached segment">
-            <img src="https://picsum.photos/id/10/800/450" th:href="@{${blog.firstPicture}}" alt=""
+        <div class="ui attached segment"
+             style="background-color : rgba(40, 40, 40, 0.3); border: rgba(40, 40, 40, 0.3);">
+            <img th:src="@{${blog.firstPicture}}" alt=""
                  class="ui fluid rounded image">
         </div>
 
         <!--文章内容主题-->
-        <div class="ui padded attached segment">
+        <div class="ui padded attached segment disabled" style="color: rgba(0,0,0,1)">
             <!--标题-->
+
             <div class="ui right aligned basic segment ">
                 <div class="ui orange basic label" th:text="${blog.flag}"></div>
             </div>
@@ -54,8 +56,9 @@
             </div>
         </div>
 
-        <!--署名信息-->
-        <div class="ui attached positive message">
+        <!--博客声明-->
+        <div class="ui attached positive message" style="opacity: 0.45 !important;
+  color: rgba(76, 125, 76,1) !important;" th:if="${blog.shareStatement}">
             <div class="ui middle aligned grid">
                 <div class="eleven wide column">
                     <ul class="list">
@@ -70,7 +73,7 @@
         </div>
 
         <!--留言部分尚未完成-->
-        <div class="ui bottom attached segment">
+        <div class="ui bottom attached segment disabled" th:if="${blog.commentabled}">
             <!--留言展示列表-->
             <div id="comment-container" class="ui teal segment">
                 <div th:fragment="commentList">

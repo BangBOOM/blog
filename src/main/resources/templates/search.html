@@ -14,7 +14,7 @@
     <div class="ui container">
 
         <!--搜索到文章数量-->
-        <div class="ui top attached segment">
+        <div class="ui top attached segment disabled" style="color: rgba(0,0,0,1)">
             <div class="ui middle aligned two column grid">
                 <div class="column">
                     <h3 class="ui teal header">搜索结果</h3>
@@ -26,7 +26,7 @@
         </div>
 
         <!--结果文章-->
-        <div class="ui  top attached tea segment">
+        <div class="ui  top attached tea segment disabled" style="color: rgba(0,0,0,1)">
             <div class="ui m-padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
                 <div class="ui middle aligned mobile reversed stackable grid">
                     <div class="eleven wide column">
@@ -65,7 +65,7 @@
                     </div>
                     <div class="five wide column">
                         <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                            <img src="https://picsum.photos/id/10/800/400" th:href="@{${blog.firstPicture}}"
+                            <img th:src="@{${blog.firstPicture}}"
                                  alt="" class="ui rounded image">
                         </a>
                     </div>
@@ -75,7 +75,7 @@
 
 
         <!--换页-->
-        <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+        <div class="ui bottom attached segment disabled" style="color: rgba(0,0,0,1)" th:if="${page.totalPages}>1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
                     <a class="ui mini teal basic button"

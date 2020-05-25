@@ -11,7 +11,7 @@
 <div class="m-container-small m-padded-tb-big">
     <div class="ui container">
         <!--header-->
-        <div class="ui top attached segment">
+        <div class="ui top attached segment disabled" style="color: rgba(0,0,0,1)">
             <div class="ui middle aligned two column grid">
                 <div class="column">
                     <h3 class="ui teal header">分类</h3>
@@ -21,7 +21,7 @@
                 </div>
             </div>
         </div>
-        <div class="ui attached segment m-padded-tb-large">
+        <div class="ui attached segment disabled m-padded-tb-large" style="color: rgba(0,0,0,1)">
             <div class="ui labeled button m-margin-tb-tiny" th:each="type : ${types}">
                 <a href="#" th:href="@{/types/{id}(id=${type.id})}" class="ui basic button"
                    th:classappend="${type.id==activateTypeId} ? 'teal'" th:text="${type.name}"></a>
@@ -31,7 +31,7 @@
         </div>
 
 
-        <div class="ui top attached teal segment">
+        <div class="ui top attached teal segment disabled" style="color: rgba(0,0,0,1)">
             <div class="ui m-padded vertical segment m-padded-tb-large m-mobile-lr-clear">
                 <div class="ui m-padded vertical segment m-padded-tb-large" th:each="blog : ${page.content}">
                     <div class="ui middle aligned mobile reversed stackable grid">
@@ -60,14 +60,14 @@
                                     </div>
                                 </div>
                                 <div class="right aligned five wide column">
-                                    <a href="#" target="_blank" th:text="${blog.type.name}"
+                                    <a href="#" th:text="${blog.type.name}"
                                        class="ui teal basic label m-padded-tiny m-text-thin"></a>
                                 </div>
                             </div>
                         </div>
                         <div class="five wide column">
                             <a href="#" th:href="@{/blog/{id}(id=${blog.id})}" target="_blank">
-                                <img src="https://picsum.photos/id/10/800/400" th:href="@{${blog.firstPicture}}"
+                                <img th:src="@{${blog.firstPicture}}"
                                      alt="" class="ui rounded image">
                             </a>
                         </div>
@@ -77,7 +77,7 @@
         </div>
 
         <!--分页-->
-        <div class="ui bottom attached segment" th:if="${page.totalPages}>1">
+        <div class="ui bottom attached segment disabled" style="color: rgba(0,0,0,1)" th:if="${page.totalPages}>1">
             <div class="ui middle aligned two column grid">
                 <div class="column">
                     <a class="ui mini teal basic button"
