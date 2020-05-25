@@ -17,9 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Wenquan Yang on 2020/5/25.
@@ -50,12 +48,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public void updateViews(Long id) {
-        Blog blog = blogRepository.getOne(id);
-        if (blog == null) {
-            throw new NotFoundException("该博客不存在");
-        }
-        blog.setViews(blog.getViews() + 1);
-        blogRepository.save(blog);
+        blogRepository.updateViews(id);
     }
 
     @Override
@@ -104,6 +97,21 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> listRecommendBlogTop(Integer size) {
         Pageable pageable = PageRequest.of(0, size, Sort.by(Sort.Direction.DESC, "updateTime"));
         return blogRepository.findTop(pageable);
+    }
+
+    @Override
+    public Map<String, List<Blog>> archiveBlog() {
+        List<String> years = blogRepository.findGroupYear();
+        Map<String, List<Blog>> map = new LinkedHashMap<>();
+        for (String year : years) {
+            map.put(year, blogRepository.findByYear(year));
+        }
+        return map;
+    }
+
+    @Override
+    public Long countBlog() {
+        return blogRepository.count();
     }
 
     @Transactional
